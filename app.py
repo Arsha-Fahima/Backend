@@ -34,11 +34,13 @@ def first():
 
     user = users.find_one({"email": data["email"]})
     if user:
-        return jsonify({"message": "Message Already Sent"}), 400
+        return jsonify  ({"message": "Message Already Sent"}), 400
 
     users.insert_one(data)
     return jsonify({"message": "Data inserted successfully"}), 200
 
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    port = int(os.environ.get('PORT', 5000))
+
+    app.run(host='0.0.0.0', port=port)
